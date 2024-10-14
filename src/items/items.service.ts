@@ -5,6 +5,7 @@ import { UpdateItemDto } from './dto/update-item.dto';
 @Injectable()
 export class ItemsService {
   create(createItemDto: CreateItemDto) {
+    console.log('createItemDto', createItemDto);
     return 'This action adds a new item';
   }
 

@@ -1,0 +1,11 @@
+#  items.http
+### create
+POST http://localhost:3000/items
+Content-Type: application/json
+
+{
+    "title": "Mouse",
+    "amount": 20,
+    "price": 2500,
+    "contactMobileNo": "0891234567"
+}
