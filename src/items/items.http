@@ -9,3 +9,9 @@ Content-Type: application/json
     "price": 2500,
     "contactMobileNo": "0891234567"
 }
+
+### find all
+GET http://localhost:3000/items
+
+### find one
+GET http://localhost:3000/items/1
