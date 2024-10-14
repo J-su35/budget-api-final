@@ -38,5 +38,27 @@ Content-Type: application/json
 ### delete
 DELETE http://localhost:3000/items/3
 
+
+
 ### Test failure - find one by string
 GET http://localhost:3000/items/A
+
+### Test failure - create with wrong amount number type
+POST http://localhost:3000/items
+Content-Type: application/json
+
+{
+    "title": "Printer",
+    "amount": "SHOUD_BE_NUM",
+    "price": 5000    
+}
+
+### Test failure - create with empty string
+POST http://localhost:3000/items
+Content-Type: application/json
+
+{
+    "title": "",
+    "amount": "SHOUD_BE_NUM",
+    "price": 5000    
+}
