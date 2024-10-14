@@ -32,6 +32,6 @@ export class ItemsService {
   }
 
   remove(id: number) {
-    return `This action removes a #${id} item`;
+    return this.itemRepository.delete({ id }) 
   }
 }

@@ -9,6 +9,16 @@ Content-Type: application/json
     "price": 2500,
     "contactMobileNo": "0891234567"
 }
+### create 2
+POST http://localhost:3000/items
+Content-Type: application/json
+
+{
+    "title": "Acer Laptop",
+    "amount": 25,
+    "price": 25000,
+    "contactMobileNo": "0890234567"
+}
 
 ### find all
 GET http://localhost:3000/items
@@ -24,3 +34,6 @@ Content-Type: application/json
     "title": "Mouse wireless",
     "contactMobileNo": "0891244567"
 }
+
+### delete
+DELETE http://localhost:3000/items/3
