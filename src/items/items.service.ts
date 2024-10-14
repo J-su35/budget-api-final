@@ -26,7 +26,9 @@ export class ItemsService {
   }
 
   update(id: number, updateItemDto: UpdateItemDto) {
-    return `This action updates a #${id} item`;
+    return this.itemRepository.save({
+      id, ...updateItemDto
+    })
   }
 
   remove(id: number) {
