@@ -1,5 +1,9 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
+export enum ItemStatus {
+    PENDING = 'PENDING', APPROVED = 'APPROVED', REJECTED = 'REJECTED'
+}
+
 @Entity()
 export class Item {
     
@@ -19,4 +23,10 @@ export class Item {
         nullable: true
     })
     contactMobileNo: string;
+
+    @Column({
+        nullable: false,
+        default: ItemStatus.PENDING
+    })
+    status: ItemStatus
 }
