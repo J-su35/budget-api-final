@@ -3,6 +3,7 @@ import { ItemsService } from './items.service';
 import { CreateItemDto } from './dto/create-item.dto';
 import { UpdateItemDto } from './dto/update-item.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { RolesGuard } from 'src/auth/guards/roles.guard';
 
 @Controller('items')
 export class ItemsController {
@@ -34,6 +35,7 @@ export class ItemsController {
     return this.itemsService.remove(id);
   }
 
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Patch(':id/approve')
   approve(@Param('id', ParseIntPipe) id: number) {
     return this.itemsService.approve(id);

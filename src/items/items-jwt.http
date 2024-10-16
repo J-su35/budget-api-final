@@ -31,3 +31,40 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidXNlcm5hb
 GET http://localhost:3000/items
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidXNlcm5hbWUiOiJ1MTAwNiIsInJvbGUiOiJVU0VSIiwic3ViIjo3LCJpYXQiOjE3Mjc3MDE0NTh9.6nVoU3NazKVijuhNclLtm1nil8UAeflXjPHFIzm_MGs
 
+### Admin Zone
+# @name loginAdmin
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "ny3@RG8_e97"
+}
+
+###
+@authTokenAdmin = {{loginAdmin.response.body.access_token}}
+
+## approve
+PATCH http://localhost:3000/items/2/approve
+Authorization: Bearer {{authTokenAdmin}}
+
+### Manager Zone
+###
+# @name loginManager
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "username": "m1001",
+    "password": "changeit"
+}
+
+###
+@authTokenManager = {{loginManager.response.body.access_token}}
+
+# ### Manager approve
+# PATCH http://localhost:3000/items/3/approve
+# Authorization: Bearer {{authTokenManager}}
+
+PATCH http://localhost:3000/items/approve/3
+Authorization: Bearer {{authTokenManager}}
