@@ -22,6 +22,10 @@ Authorization: Bearer {{authToken}}
 PATCH http://localhost:3000/items/1/approve
 Authorization: Bearer {{authToken}}
 
+### reject expect fail
+PATCH http://localhost:3000/items/1/reject
+Authorization: Bearer {{authToken}}
+
 ### find all with static jwt
 GET http://localhost:3000/items
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidXNlcm5hbWUiOiJ1MTAwNiIsInJvbGUiOiJVU0VSIiwic3ViIjo3LCJpYXQiOjE3Mjc3MDU4NDV9.g9My7bo039yYoYP1tMg3TNPsy_PRUZpIgoEYvoMkDTU
@@ -44,8 +48,16 @@ Content-Type: application/json
 ###
 @authTokenAdmin = {{loginAdmin.response.body.access_token}}
 
-## approve
+### find all
+GET http://localhost:3000/items
+Authorization: Bearer {{authTokenAdmin}}
+
+### approve
 PATCH http://localhost:3000/items/2/approve
+Authorization: Bearer {{authTokenAdmin}}
+
+### reject
+PATCH http://localhost:3000/items/1/reject
 Authorization: Bearer {{authTokenAdmin}}
 
 ### Manager Zone

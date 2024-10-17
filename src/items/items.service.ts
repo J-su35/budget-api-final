@@ -55,4 +55,19 @@ export class ItemsService {
 
     return await this.itemRepository.save(item)
   }
+
+  async reject(id: number) {
+    if (!id) {
+      throw new NotFoundException(`id should not empty`)
+    }
+
+    const item = await this.itemRepository.findOneBy({ id })
+    if (!item) {
+      throw new NotFoundException(`not found: id={}`)
+    }
+
+    item.status = ItemStatus.REJECTED
+
+    return await this.itemRepository.save(item)
+  }
 }
