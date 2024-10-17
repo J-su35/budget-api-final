@@ -4,6 +4,8 @@ import { CreateItemDto } from './dto/create-item.dto';
 import { UpdateItemDto } from './dto/update-item.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
+import { Roles } from 'src/auth/decorators/roles.decorator';
+import { Role } from 'src/users/entities/user.entity';
 
 @Controller('items')
 export class ItemsController {
@@ -36,12 +38,14 @@ export class ItemsController {
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles([Role.ADMIN, Role.MANAGER])
   @Patch(':id/approve')
   approve(@Param('id', ParseIntPipe) id: number) {
     return this.itemsService.approve(id);
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles([Role.ADMIN, Role.MANAGER])
   @Patch(':id/reject')
   reject(@Param('id', ParseIntPipe) id: number) {
     return this.itemsService.reject(id);

@@ -31,7 +31,7 @@ Content-Type: application/json
 
 {
     "username": "m1001",
-    "password": "changeit",
+    "password": "manager01",
     "role": "MANAGER"
 }
 
