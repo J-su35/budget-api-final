@@ -68,15 +68,16 @@ Content-Type: application/json
 
 {
     "username": "m1001",
-    "password": "changeit"
+    "password": "manager01"
 }
 
 ###
 @authTokenManager = {{loginManager.response.body.access_token}}
 
-# ### Manager approve
-# PATCH http://localhost:3000/items/3/approve
-# Authorization: Bearer {{authTokenManager}}
+### find all
+GET http://localhost:3000/items
+Authorization: Bearer {{authTokenManager}}
 
-PATCH http://localhost:3000/items/approve/3
+### Manager approve
+PATCH http://localhost:3000/items/1/approve
 Authorization: Bearer {{authTokenManager}}
