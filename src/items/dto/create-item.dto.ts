@@ -1,4 +1,8 @@
-import { IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
+import { IsNotEmpty, IsNumber, IsOptional, IsString, ValidationArguments } from "class-validator";
+
+const isNumberMessage = (validationArguments: ValidationArguments): string => {
+    return `${validationArguments.property}: must to be number`
+}
 
 export class CreateItemDto {
 
@@ -6,11 +10,11 @@ export class CreateItemDto {
     @IsNotEmpty()
     title: string;
 
-    @IsNumber()
+    @IsNumber({}, { message: isNumberMessage })
     @IsNotEmpty()
     amount: number;
 
-    @IsNumber()
+    @IsNumber({}, { message: isNumberMessage })
     @IsNotEmpty()
     price: number;
 

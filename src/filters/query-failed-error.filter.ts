@@ -13,7 +13,7 @@ export class QueryFailedErrorFilter extends BaseExceptionFilter {
     if (this.isDuplicateKeyValue(message)) {
       // return 409 Conflict
       const detail = (exception.driverError as any).detail
-      super.catch(new ConflictException(detail.replace('already exists', 'is duplicated')), host)
+      super.catch(new ConflictException('This username has already exists'), host)
       return;
     }
 
