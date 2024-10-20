@@ -83,7 +83,7 @@ export class AuthService {
   async validateUserByAccessToken(accessToken: string): Promise<LoggedInDto> {
 
     const userInfo: { preferred_username: string } = await this.jwtService.decode(accessToken);
-
+    console.log(userInfo);
     const user = await this.usersService.findOneByUsername(userInfo.preferred_username);
     if (!user) {
       this.logger.debug(`user not found: username=${userInfo.preferred_username}`, AuthService.name)
