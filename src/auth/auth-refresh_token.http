@@ -1,0 +1,18 @@
+# auth-refresh_token.http
+# @name login
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "username": "u1002",
+    "password": "user02"
+}
+
+###
+@authToken = {{login.response.body.access_token}}
+@authRefreshToken = {{login.response.body.refresh_token}}
+
+
+### refresh
+POST http://localhost:3000/auth/refresh
+Authorization: Bearer {{authRefreshToken}}
