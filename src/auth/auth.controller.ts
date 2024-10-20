@@ -1,7 +1,8 @@
-import { Controller, Post, Request, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Request, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { LoggedInDto } from './dto/logged-in.dto';
+import { Oauth2AuthGuard } from './guards/oauth2-auth.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -12,5 +13,17 @@ export class AuthController {
   login(@Request() request: { user: LoggedInDto}) {
     const access_token = this.authService.login(request.user)
     return { access_token  };
+  }
+
+  //new
+  @Get('login-oauth2-redirect-url')
+  loginOauth2RedirectUrl(): { redirectUrl: string } {
+    return { redirectUrl: this.authService.getOauth2RedirectUrl() };
+  }
+  //new
+  @UseGuards(Oauth2AuthGuard)
+  @Post('login-oauth2')
+  loginKeycloak(@Request() request: { user : LoggedInDto }) {
+    return this.authService.login(request.user)
   }
 }
